@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="64" height="64" rx="14" fill="url(#medGrad)" />
+  
+  <!-- Inner border ring -->
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4" />
+  
+  <!-- Medical Cross Accent -->
+  <rect x="42" y="10" width="12" height="4" rx="2" fill="#38bdf8" />
+  <rect x="46" y="6" width="4" height="12" rx="2" fill="#38bdf8" />
+  
+  <!-- MedStream Stylized 'M' glyph -->
+  <path d="M14 46V18h7l11 15 11-15h7v28h-6V29l-9.5 13h-5L20 29v17z" fill="#ffffff" />
+  
+  <!-- Pulse / Telemetry accent -->
+  <circle cx="32" cy="53" r="2.5" fill="#38bdf8" />
+  <path d="M20 53h7m10 0h7" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" />
+</svg>
