@@ -6,6 +6,30 @@
 (function () {
   'use strict';
 
+  // Ensure window.fetch is writable and robust against getter-only environments
+  try {
+    var _fetch = window.fetch ? window.fetch.bind(window) : undefined;
+    try {
+      Object.defineProperty(window, 'fetch', {
+        get: function () { return _fetch; },
+        set: function (fn) { _fetch = fn; },
+        configurable: true,
+        enumerable: true
+      });
+    } catch (e1) {
+      if (typeof Window !== 'undefined' && Window.prototype) {
+        try {
+          Object.defineProperty(Window.prototype, 'fetch', {
+            get: function () { return _fetch; },
+            set: function (fn) { _fetch = fn; },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e2) {}
+      }
+    }
+  } catch (e) {}
+
   // --- Theme Management ---
   const THEME_KEY = 'medstream_theme';
 
