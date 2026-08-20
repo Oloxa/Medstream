@@ -1,0 +1,6 @@
+{
+  "name": "MedStream Global",
+  "description": "Enterprise Surgical & Medical Masterclass Video Archive platform with dynamic data binding, multi-angle clinical video streaming, and surgical procedure catalog.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

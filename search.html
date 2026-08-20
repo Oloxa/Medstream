@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Clinical Archive &amp; Surgical Masterclasses - MedStream Global</title>
+  <meta name="description" content="Search MedStream Global's indexed repository of surgical videos, diagnostic cases, accredited masterclasses, and procedural lectures.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" id="brandLogo">
+        <div class="brand-icon">M</div>
+        <span>MedStream</span>
+        <span class="brand-badge">Global</span>
+      </a>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="list.html?type=surgical" class="nav-link">Surgical Procedures</a></li>
+          <li><a href="list.html?type=diagnostic" class="nav-link">Diagnostic Case Studies</a></li>
+          <li><a href="list.html?type=lectures" class="nav-link">Medical Lectures</a></li>
+          <li><a href="list.html?type=symposia" class="nav-link">Clinical Symposia</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <form class="search-form-header" action="search.html" method="get">
+          <input type="text" name="q" class="search-input-header" placeholder="Search procedures, surgeons..." aria-label="Search">
+          <button type="submit" class="search-btn-header" aria-label="Submit Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
+
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light/dark theme">
+          <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="12" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item active" aria-current="page">Clinical Search &amp; Discovery</li>
+        </ol>
+      </nav>
+
+      <!-- Prominent Search Hero Box -->
+      <section class="search-hero-box">
+        <h1 class="search-page-title">Enterprise Clinical Case Search</h1>
+        <p class="search-page-subtitle">Search indexed surgical masterclasses, operative protocols, lead surgeons, and anatomical techniques.</p>
+        
+        <form class="search-main-form" id="searchPageForm" action="search.html" method="get">
+          <input type="text" name="q" id="searchPageInput" class="search-main-input" placeholder="Type surgical procedure, specialty, surgeon name, or keyword..." aria-label="Main Search Input">
+          <button type="submit" class="btn btn-primary" style="height: 48px; padding: 0 24px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Search Archive
+          </button>
+        </form>
+      </section>
+
+      <!-- Interactive Filter Panel -->
+      <section class="filter-panel" id="searchFilterPanel">
+        <div class="filter-row">
+          <span class="filter-label">Specialty:</span>
+          <div class="filter-options">
+            <button type="button" class="filter-opt on" data-filter-type="specialty" data-val="all">All Specialties</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="general">General / GI</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="neurosurgery">Neurosurgery</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="cardiothoracic">Cardiothoracic</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="orthopedics">Orthopedics</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="urology">Urology</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="oncology">Oncology</button>
+            <button type="button" class="filter-opt" data-filter-type="specialty" data-val="vascular">Vascular</button>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <span class="filter-label">Release Year:</span>
+          <div class="filter-options">
+            <button type="button" class="filter-opt on" data-filter-type="year" data-val="all">All Years</button>
+            <button type="button" class="filter-opt" data-filter-type="year" data-val="2026">2026</button>
+            <button type="button" class="filter-opt" data-filter-type="year" data-val="2025">2025</button>
+            <button type="button" class="filter-opt" data-filter-type="year" data-val="2024">2024</button>
+            <button type="button" class="filter-opt" data-filter-type="year" data-val="2023">2023</button>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <span class="filter-label">Accreditation:</span>
+          <div class="filter-options">
+            <button type="button" class="filter-opt on" data-filter-type="accred" data-val="all">All Levels</button>
+            <button type="button" class="filter-opt" data-filter-type="accred" data-val="cme">CME Category 1</button>
+            <button type="button" class="filter-opt" data-filter-type="accred" data-val="peer">Peer Reviewed</button>
+            <button type="button" class="filter-opt" data-filter-type="accred" data-val="fellowship">Fellowship Masterclass</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Results Header -->
+      <div class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Matching Surgical Cases (<span id="searchResultCount">12</span> Found)
+        </h2>
+      </div>
+
+      <!-- Dedicated "No Matching Clinical Cases Found" Empty State Block -->
+      <div class="empty-state-box" id="searchEmptyState">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+        <h3 class="empty-title">No Matching Clinical Cases Found</h3>
+        <p class="empty-desc">We could not find any surgical masterclasses matching your current query and filter combination. Try adjusting your specialty filters or clearing the search keyword.</p>
+        <button type="button" class="btn btn-primary" id="searchClearBtn">
+          Clear Search &amp; Reset Filters
+        </button>
+      </div>
+
+      <!-- data-list="vod" Results Grid -->
+      <div class="vod-grid" data-list="vod">
+        <!-- Template Card 1 (with data-f attributes) -->
+        <div class="vod-card" data-class="general laparoscopy" data-year="2026" data-accred="cme peer">
+          <div class="vod-cover-wrap">
+            <img data-f="vod_pic" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%230369a1'/><stop offset='100%25' stop-color='%230f172a'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg1)'/><circle cx='100' cy='110' r='45' fill='none' stroke='%2338bdf8' stroke-width='3'/><polygon points='95,100 115,110 95,120' fill='%23ffffff'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>ROBOTIC SURGERY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%2394a3b8' text-anchor='middle'>Laparoscopic Cholecystectomy</text></svg>" alt="Robotic Cholecystectomy Poster">
+            <span class="badge badge-score vod-badge-top-left" data-f="vod_score">9.9</span>
+            <span class="vod-badge-bottom-right" data-f="vod_time">2026-08</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title" data-f="vod_name">Robotic-Assisted Laparoscopic Cholecystectomy (Calot's Triangle)</a>
+            <div class="vod-sub-meta">
+              <span data-f="type_name">General Surgery</span>
+              <span data-f="vod_remarks">4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line" data-f="vod_actor">Dr. Katherine Vance, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 2 -->
+        <div class="vod-card" data-class="neurosurgery" data-year="2026" data-accred="cme peer">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg2' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%230f766e'/><stop offset='100%25' stop-color='%23042f2e'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg2)'/><circle cx='100' cy='120' r='50' fill='none' stroke='%232dd4bf' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>NEUROSURGERY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%2399f6e4' text-anchor='middle'>Trigeminal Decompression</text></svg>" alt="Trigeminal Neuralgia Poster">
+            <span class="badge badge-score vod-badge-top-left">9.8</span>
+            <span class="vod-badge-bottom-right">2026-08</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Microvascular Decompression for Trigeminal Neuralgia</a>
+            <div class="vod-sub-meta">
+              <span>Neurosurgery</span>
+              <span>4K HD</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Julian Hayes, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 3 -->
+        <div class="vod-card" data-class="oncology general" data-year="2026" data-accred="cme peer fellowship">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg3' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23b45309'/><stop offset='100%25' stop-color='%23451a03'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg3)'/><path d='M70 140 C70 80, 130 80, 130 140' stroke='%23fde68a' stroke-width='3' fill='none'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>ONCOLOGY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23fef3c7' text-anchor='middle'>Whipple Resection</text></svg>" alt="Whipple Procedure Poster">
+            <span class="badge badge-score vod-badge-top-left">9.9</span>
+            <span class="vod-badge-bottom-right">2026-07</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Whipple Procedure: Pancreaticoduodenectomy En Bloc</a>
+            <div class="vod-sub-meta">
+              <span>Surgical Oncology</span>
+              <span>4K 60fps</span>
+            </div>
+            <div class="vod-surgeon-line">Prof. Markus Büchler</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 4 -->
+        <div class="vod-card" data-class="cardiothoracic" data-year="2026" data-accred="cme peer">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg4' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231e3a8a'/><stop offset='100%25' stop-color='%230f172a'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg4)'/><rect x='60' y='90' width='80' height='60' rx='8' fill='none' stroke='%2360a5fa' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>CARDIOTHORACIC</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%2393c5fd' text-anchor='middle'>Off-Pump CABG</text></svg>" alt="Off-Pump CABG Poster">
+            <span class="badge badge-score vod-badge-top-left">9.6</span>
+            <span class="vod-badge-bottom-right">2026-07</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Off-Pump Coronary Artery Bypass Grafting (OPCAB)</a>
+            <div class="vod-sub-meta">
+              <span>Cardiothoracic</span>
+              <span>4K HD</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Marcus Vance, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 5 -->
+        <div class="vod-card" data-class="orthopedics" data-year="2026" data-accred="cme">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg5' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23831843'/><stop offset='100%25' stop-color='%232e0817'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg5)'/><path d='M70 100 L130 100 L115 150 L85 150 Z' fill='none' stroke='%23f472b6' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>ORTHOPEDICS</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23fbcfe8' text-anchor='middle'>Total Knee Balancing</text></svg>" alt="Total Knee Arthroplasty Poster">
+            <span class="badge badge-score vod-badge-top-left">9.7</span>
+            <span class="vod-badge-bottom-right">2026-06</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Total Knee Arthroplasty with Navigation-Guided Balancing</a>
+            <div class="vod-sub-meta">
+              <span>Orthopedics</span>
+              <span>Multi-Feed</span>
+            </div>
+            <div class="vod-surgeon-line">Prof. Soren Lindqvist</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 6 -->
+        <div class="vod-card" data-class="neurosurgery" data-year="2026" data-accred="cme peer fellowship">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg6' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%234c1d95'/><stop offset='100%25' stop-color='%231e0b38'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg6)'/><circle cx='100' cy='110' r='35' fill='none' stroke='%23a78bfa' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>NEUROSURGERY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23ddd6fe' text-anchor='middle'>Awake Craniotomy</text></svg>" alt="Awake Craniotomy Poster">
+            <span class="badge badge-score vod-badge-top-left">9.7</span>
+            <span class="vod-badge-bottom-right">2026-06</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Awake Craniotomy for Eloquent Cortex Glioma Resection</a>
+            <div class="vod-sub-meta">
+              <span>Neurosurgery</span>
+              <span>4K Multi-Angle</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Mitchel Berger, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 7 -->
+        <div class="vod-card" data-class="cardiothoracic vascular" data-year="2025" data-accred="cme peer">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg7' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231d4ed8'/><stop offset='100%25' stop-color='%230f172a'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg7)'/><circle cx='100' cy='110' r='40' fill='none' stroke='%2360a5fa' stroke-width='3'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>CARDIAC</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23bfdbfe' text-anchor='middle'>Aortic Root David V</text></svg>" alt="Aortic Root Poster">
+            <span class="badge badge-score vod-badge-top-left">9.8</span>
+            <span class="vod-badge-bottom-right">2025-11</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Aortic Root Remodeling &amp; Valve-Sparing Reimplantation</a>
+            <div class="vod-sub-meta">
+              <span>Cardiothoracic</span>
+              <span>4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Tirone David, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 8 -->
+        <div class="vod-card" data-class="orthopedics" data-year="2025" data-accred="cme">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg8' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%239d174d'/><stop offset='100%25' stop-color='%23500724'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg8)'/><rect x='70' y='80' width='60' height='60' fill='none' stroke='%23f472b6' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>HIP ARTHROPLASTY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23fbcfe8' text-anchor='middle'>Direct Anterior Approach</text></svg>" alt="Direct Anterior THA Poster">
+            <span class="badge badge-score vod-badge-top-left">9.5</span>
+            <span class="vod-badge-bottom-right">2025-09</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Total Hip Arthroplasty Direct Anterior Approach (DAA)</a>
+            <div class="vod-sub-meta">
+              <span>Orthopedics</span>
+              <span>4K 60fps</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Joel Matta, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 9 -->
+        <div class="vod-card" data-class="urology" data-year="2025" data-accred="cme peer">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg9' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%230f766e'/><stop offset='100%25' stop-color='%23042f2e'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg9)'/><circle cx='100' cy='110' r='30' fill='none' stroke='%235eead4' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>UROLOGY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23ccfbf1' text-anchor='middle'>Radical Prostatectomy</text></svg>" alt="Robotic Prostatectomy Poster">
+            <span class="badge badge-score vod-badge-top-left">9.6</span>
+            <span class="vod-badge-bottom-right">2025-08</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Robotic Radical Prostatectomy with Neurovascular Sparing</a>
+            <div class="vod-sub-meta">
+              <span>Urology</span>
+              <span>4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Mani Menon, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 10 -->
+        <div class="vod-card" data-class="vascular" data-year="2024" data-accred="cme fellowship">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg10' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231e293b'/><stop offset='100%25' stop-color='%23020617'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg10)'/><circle cx='100' cy='110' r='45' fill='none' stroke='%2338bdf8' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>VASCULAR</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%2394a3b8' text-anchor='middle'>Bypass Masterclass</text></svg>" alt="Vascular Reconstruction Poster">
+            <span class="badge badge-score vod-badge-top-left">9.8</span>
+            <span class="vod-badge-bottom-right">2024-10</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Vascular Reconstruction &amp; In-Situ Bypass Masterclass</a>
+            <div class="vod-sub-meta">
+              <span>Vascular</span>
+              <span>CME Certified</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Frank Veith, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 11 -->
+        <div class="vod-card" data-class="general laparoscopy" data-year="2024" data-accred="cme">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg11' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%234338ca'/><stop offset='100%25' stop-color='%231e1b4b'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg11)'/><path d='M70 120 L100 80 L130 120 Z' fill='none' stroke='%23818cf8' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>BARIATRIC</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23c7d2fe' text-anchor='middle'>Roux-en-Y Bypass</text></svg>" alt="Bariatric Surgery Poster">
+            <span class="badge badge-score vod-badge-top-left">9.5</span>
+            <span class="vod-badge-bottom-right">2024-05</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Robotic Roux-en-Y Gastric Bypass: Stapling &amp; Leak Testing</a>
+            <div class="vod-sub-meta">
+              <span>Bariatric</span>
+              <span>4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Kelvin Higa, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Card 12 -->
+        <div class="vod-card" data-class="general" data-year="2023" data-accred="peer">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='sg12' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23155e75'/><stop offset='100%25' stop-color='%23083344'/></linearGradient></defs><rect width='200' height='300' fill='url(%23sg12)'/><rect x='70' y='90' width='60' height='40' rx='4' fill='none' stroke='%2322d3ee' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='11' font-weight='bold' fill='%23ffffff' text-anchor='middle'>TRAUMA</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23a5f3fc' text-anchor='middle'>Damage Control Laparotomy</text></svg>" alt="Damage Control Laparotomy Poster">
+            <span class="badge badge-score vod-badge-top-left">9.6</span>
+            <span class="vod-badge-bottom-right">2023-11</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Damage Control Laparotomy &amp; Temporary Abdominal Closure</a>
+            <div class="vod-sub-meta">
+              <span>Trauma</span>
+              <span>Emergency OR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Kenneth Mattox, MD</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Tags Module: Container data-list="tag" (At least 15 clickable tags) -->
+      <section class="popular-tags-module">
+        <h3 class="tags-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          Popular Clinical Specialties &amp; Procedural Tags
+        </h3>
+        <div class="tags-container" data-list="tag">
+          <a href="search.html?q=Cardiology" class="tag-item"><span>Cardiology</span> <span class="tag-count">482</span></a>
+          <a href="search.html?q=Neurosurgery" class="tag-item"><span>Neurosurgery</span> <span class="tag-count">394</span></a>
+          <a href="search.html?q=Laparoscopy" class="tag-item"><span>Laparoscopy</span> <span class="tag-count">612</span></a>
+          <a href="search.html?q=Pediatrics" class="tag-item"><span>Pediatric Surgery</span> <span class="tag-count">245</span></a>
+          <a href="search.html?q=Orthopedics" class="tag-item"><span>Orthopedics &amp; Joint Replacement</span> <span class="tag-count">520</span></a>
+          <a href="search.html?q=Oncology" class="tag-item"><span>Surgical Oncology</span> <span class="tag-count">430</span></a>
+          <a href="search.html?q=Cardiothoracic" class="tag-item"><span>Cardiothoracic</span> <span class="tag-count">318</span></a>
+          <a href="search.html?q=Vascular" class="tag-item"><span>Vascular Surgery</span> <span class="tag-count">290</span></a>
+          <a href="search.html?q=Urology" class="tag-item"><span>Urology &amp; Renal</span> <span class="tag-count">340</span></a>
+          <a href="search.html?q=Robotic" class="tag-item"><span>Robotic Surgery (da Vinci)</span> <span class="tag-count">410</span></a>
+          <a href="search.html?q=Trauma" class="tag-item"><span>Trauma &amp; Critical Care</span> <span class="tag-count">198</span></a>
+          <a href="search.html?q=Anesthesiology" class="tag-item"><span>Anesthesiology &amp; Monitoring</span> <span class="tag-count">175</span></a>
+          <a href="search.html?q=Radiology" class="tag-item"><span>Interventional Radiology</span> <span class="tag-count">215</span></a>
+          <a href="search.html?q=Ophthalmology" class="tag-item"><span>Ophthalmology</span> <span class="tag-count">160</span></a>
+          <a href="search.html?q=Plastic" class="tag-item"><span>Plastic &amp; Reconstructive</span> <span class="tag-count">280</span></a>
+          <a href="search.html?q=Bariatric" class="tag-item"><span>Bariatric &amp; Metabolic</span> <span class="tag-count">210</span></a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer - STRICTLY Sitemap, Crawler Map, Copyright ONLY -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="sitemap.xml" class="footer-link">Sitemap</a>
+        <a href="spider.xml" class="footer-link">Crawler Map</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 MedStream Global. All rights reserved. Enterprise Surgical &amp; Medical Masterclass Archive.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

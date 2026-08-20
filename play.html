@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch: Robotic-Assisted Laparoscopic Cholecystectomy (4K Multi-View) - MedStream Global</title>
+  <meta name="description" content="Interactive 4K surgical video stream with multi-angle camera feeds, chapter navigation, and live OR vitals telemetry.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" id="brandLogo">
+        <div class="brand-icon">M</div>
+        <span>MedStream</span>
+        <span class="brand-badge">Global</span>
+      </a>
+
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="list.html?type=surgical" class="nav-link active">Surgical Procedures</a></li>
+          <li><a href="list.html?type=diagnostic" class="nav-link">Diagnostic Case Studies</a></li>
+          <li><a href="list.html?type=lectures" class="nav-link">Medical Lectures</a></li>
+          <li><a href="list.html?type=symposia" class="nav-link">Clinical Symposia</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <form class="search-form-header" action="search.html" method="get">
+          <input type="text" name="q" class="search-input-header" placeholder="Search procedures, surgeons..." aria-label="Search">
+          <button type="submit" class="search-btn-header" aria-label="Submit Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
+
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light/dark theme">
+          <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="12" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item"><a href="list.html?type=surgical">Surgical Procedures</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item"><a href="detail.html">Laparoscopic Cholecystectomy</a></li>
+          <li class="breadcrumb-separator">/</li>
+          <li class="breadcrumb-item active" aria-current="page">Live Multi-Angle Stream</li>
+        </ol>
+      </nav>
+
+      <!-- STRICT PLAYER CONTAINER (16:9) -->
+      <div class="player" id="mainVideoPlayer">
+        <div class="embed-responsive">
+          <canvas id="surgicalCanvas" class="player-theater-canvas"></canvas>
+          
+          <!-- Custom Interactive Medical Player HUD -->
+          <div class="player-controls-bar">
+            <div class="player-progress-bar" id="playerProgress" title="Click to seek">
+              <div class="player-progress-filled" id="playerProgressFilled">
+                <div class="player-progress-handle"></div>
+              </div>
+            </div>
+
+            <div class="player-buttons-row">
+              <div class="player-btn-group-left">
+                <button type="button" class="player-ctrl-btn" id="playerPlayPause">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                  Pause
+                </button>
+                <span class="player-time-display" id="playerTime">04:08 / 34:15</span>
+                <span class="or-telemetry-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+                  LIVE OR FEED
+                </span>
+                <span class="badge badge-remarks" id="playerModuleBadge">Module 01: Pre-Op Anatomical Landmarks</span>
+              </div>
+
+              <div class="player-btn-group-right">
+                <button type="button" class="player-ctrl-btn" id="playerSpeed">1.0x</button>
+                <button type="button" class="player-ctrl-btn" id="playerMute">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                  Audio
+                </button>
+                <button type="button" class="player-ctrl-btn" id="playerFullscreen" aria-label="Fullscreen">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Multi-Source Line Selector (.playlist) -->
+      <section class="playlist-section">
+        <div class="playlist-header">
+          <h2 class="playlist-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            Operative Camera Feeds &amp; Procedure Chapters
+          </h2>
+          <span class="badge badge-accred">Select Stream Angle Below</span>
+        </div>
+
+        <!-- 3 Distinct Camera Feeds / Stream Lines -->
+        <div class="line-tabs">
+          <button type="button" class="line-tab-btn on" data-line="line1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+            Line 1: Primary Surgical View (4K)
+          </button>
+          <button type="button" class="line-tab-btn" data-line="line2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            Line 2: Endoscopic / Laparoscopic Feed
+          </button>
+          <button type="button" class="line-tab-btn" data-line="line3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            Line 3: Vital Signs &amp; OR Monitor Overlay
+          </button>
+        </div>
+
+        <!-- Line 1: Primary Surgical View (4K) — 22 Chapter Modules -->
+        <div class="line-content-pane on" data-line-content="line1">
+          <div class="line-name">
+            <span>Primary Surgical View (4K Ultra-High Definition da Vinci Dual Optics)</span>
+            <span class="line-eps-count">22 Chapter Modules</span>
+          </div>
+          <div class="eps">
+            <button type="button" class="ep-btn on" data-title="Trocar Placement &amp; Pneumoperitoneum"><span class="ep-num">Module 01</span><span class="ep-time">Trocar Setup (02:15)</span></button>
+            <button type="button" class="ep-btn" data-title="Omental Adhesiolysis"><span class="ep-num">Module 02</span><span class="ep-time">Adhesiolysis (01:40)</span></button>
+            <button type="button" class="ep-btn" data-title="Fundus Cephalic Traction"><span class="ep-num">Module 03</span><span class="ep-time">Fundus Traction (01:10)</span></button>
+            <button type="button" class="ep-btn" data-title="Hartmann Pouch Lateral Retraction"><span class="ep-num">Module 04</span><span class="ep-time">Hartmann Retraction (01:25)</span></button>
+            <button type="button" class="ep-btn" data-title="Anterior Peritoneal Scoring"><span class="ep-num">Module 05</span><span class="ep-time">Peritoneal Scoring (01:50)</span></button>
+            <button type="button" class="ep-btn" data-title="Posterior Peritoneal Window"><span class="ep-num">Module 06</span><span class="ep-time">Posterior Window (02:05)</span></button>
+            <button type="button" class="ep-btn" data-title="Calot's Triangle Fat Clearance"><span class="ep-num">Module 07</span><span class="ep-time">Calot Fat Clearance (02:30)</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Duct Identification"><span class="ep-num">Module 08</span><span class="ep-time">Cystic Duct ID (01:45)</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Artery Dissection"><span class="ep-num">Module 09</span><span class="ep-time">Cystic Artery ID (01:35)</span></button>
+            <button type="button" class="ep-btn" data-title="Lower 1/3 Gallbladder Mobilization"><span class="ep-num">Module 10</span><span class="ep-time">Lower Gallbladder (01:55)</span></button>
+            <button type="button" class="ep-btn" data-title="Critical View of Safety Verification"><span class="ep-num">Module 11</span><span class="ep-time">CVS Verification (01:20)</span></button>
+            <button type="button" class="ep-btn" data-title="ICG Fluorescence Cholangiography"><span class="ep-num">Module 12</span><span class="ep-time">ICG Cholangiography (02:10)</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Duct Hem-o-lok Clipping"><span class="ep-num">Module 13</span><span class="ep-time">Duct Clipping (01:15)</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Duct Sharp Transection"><span class="ep-num">Module 14</span><span class="ep-time">Duct Transection (00:55)</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Artery Titanium Clipping"><span class="ep-num">Module 15</span><span class="ep-time">Artery Clipping (01:05)</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Artery Division"><span class="ep-num">Module 16</span><span class="ep-time">Artery Transection (00:45)</span></button>
+            <button type="button" class="ep-btn" data-title="Liver Bed Retrograde Separation"><span class="ep-num">Module 17</span><span class="ep-time">Liver Bed Separation (02:40)</span></button>
+            <button type="button" class="ep-btn" data-title="Hepatic Fossa Hemostasis"><span class="ep-num">Module 18</span><span class="ep-time">Hemostasis Control (01:30)</span></button>
+            <button type="button" class="ep-btn" data-title="Specimen Bagging &amp; Extraction"><span class="ep-num">Module 19</span><span class="ep-time">Endobag Retrieval (01:40)</span></button>
+            <button type="button" class="ep-btn" data-title="Warm Saline Abdominal Lavage"><span class="ep-num">Module 20</span><span class="ep-time">Abdominal Irrigation (01:15)</span></button>
+            <button type="button" class="ep-btn" data-title="Fascial Defect Suture Closure"><span class="ep-num">Module 21</span><span class="ep-time">Fascial Closure (01:20)</span></button>
+            <button type="button" class="ep-btn" data-title="Skin Subcuticular Dressing"><span class="ep-num">Module 22</span><span class="ep-time">Subcuticular Suture (01:00)</span></button>
+          </div>
+        </div>
+
+        <!-- Line 2: Endoscopic / Laparoscopic Feed — 10 Chapter Modules -->
+        <div class="line-content-pane" data-line-content="line2">
+          <div class="line-name">
+            <span>Endoscopic / Laparoscopic Optical Feed (30° Rigid Endoscope)</span>
+            <span class="line-eps-count">10 Chapter Modules</span>
+          </div>
+          <div class="eps">
+            <button type="button" class="ep-btn" data-title="Endo Panoramic Survey"><span class="ep-num">Module 01</span><span class="ep-time">Panoramic Survey</span></button>
+            <button type="button" class="ep-btn" data-title="Hepatic Hilum Close-up"><span class="ep-num">Module 02</span><span class="ep-time">Hepatic Hilum Angle</span></button>
+            <button type="button" class="ep-btn" data-title="Calot Triangle Optical Window"><span class="ep-num">Module 03</span><span class="ep-time">Triangle Visualization</span></button>
+            <button type="button" class="ep-btn" data-title="Cystic Fossa High-Mag View"><span class="ep-num">Module 04</span><span class="ep-time">Fossa Dissection View</span></button>
+            <button type="button" class="ep-btn" data-title="Near-Infrared ICG Mode"><span class="ep-num">Module 05</span><span class="ep-time">Fluorescent ICG Filter</span></button>
+            <button type="button" class="ep-btn" data-title="Posterior Leaf Inspection"><span class="ep-num">Module 06</span><span class="ep-time">Posterior Leaf View</span></button>
+            <button type="button" class="ep-btn" data-title="Clip Applier Alignment"><span class="ep-num">Module 07</span><span class="ep-time">Clip Placement Close-Up</span></button>
+            <button type="button" class="ep-btn" data-title="Fossa Coagulation Inspection"><span class="ep-num">Module 08</span><span class="ep-time">Bed Inspection Angle</span></button>
+            <button type="button" class="ep-btn" data-title="Morison Pouch Clearance"><span class="ep-num">Module 09</span><span class="ep-time">Subhepatic Recess Sweep</span></button>
+            <button type="button" class="ep-btn" data-title="Port Site Internal Hemostasis"><span class="ep-num">Module 10</span><span class="ep-time">Port Exit Hemostasis</span></button>
+          </div>
+        </div>
+
+        <!-- Line 3: Vital Signs & OR Monitor Overlay — 8 Chapter Modules -->
+        <div class="line-content-pane" data-line-content="line3">
+          <div class="line-name">
+            <span>Vital Signs &amp; Intraoperative Hemodynamic Monitoring</span>
+            <span class="line-eps-count">8 Chapter Modules</span>
+          </div>
+          <div class="eps">
+            <button type="button" class="ep-btn" data-title="Pre-Op Baseline Vitals"><span class="ep-num">Module 01</span><span class="ep-time">Baseline Vitals</span></button>
+            <button type="button" class="ep-btn" data-title="Trendelenburg Hemodynamics"><span class="ep-num">Module 02</span><span class="ep-time">Tilt Position Trace</span></button>
+            <button type="button" class="ep-btn" data-title="Pneumoperitoneum ETCO2 Response"><span class="ep-num">Module 03</span><span class="ep-time">ETCO2 Regulation</span></button>
+            <button type="button" class="ep-btn" data-title="Dissection Hemodynamic Stability"><span class="ep-num">Module 04</span><span class="ep-time">Dissection Trace</span></button>
+            <button type="button" class="ep-btn" data-title="ICG Dye Clearance Hemodynamics"><span class="ep-num">Module 05</span><span class="ep-time">ICG Injection Timing</span></button>
+            <button type="button" class="ep-btn" data-title="Post-Resection Stability Curve"><span class="ep-num">Module 06</span><span class="ep-time">Post-Excision Stability</span></button>
+            <button type="button" class="ep-btn" data-title="Desufflation Arterial Response"><span class="ep-num">Module 07</span><span class="ep-time">Desufflation Balance</span></button>
+            <button type="button" class="ep-btn" data-title="Anesthesia Emergence &amp; Recovery"><span class="ep-num">Module 08</span><span class="ep-time">Emergence &amp; Extubation</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clinical Metadata Block -->
+      <section class="detail-header-card" style="margin-top: 24px;">
+        <div class="detail-poster-wrap">
+          <img data-f="vod_pic" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450' viewBox='0 0 300 450'><defs><linearGradient id='pg' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%230369a1'/><stop offset='100%25' stop-color='%230f172a'/></linearGradient></defs><rect width='300' height='450' fill='url(%23pg)'/><circle cx='150' cy='180' r='75' fill='none' stroke='%2338bdf8' stroke-width='4' opacity='0.35'/><polygon points='140,165 170,180 140,195' fill='%23ffffff'/><text x='150' y='320' font-family='sans-serif' font-size='18' font-weight='bold' fill='%23ffffff' text-anchor='middle'>ROBOTIC CHOLECYSTECTOMY</text><text x='150' y='345' font-family='sans-serif' font-size='12' fill='%2394a3b8' text-anchor='middle'>Johns Hopkins Medicine • 4K HDR</text></svg>" alt="Case Poster">
+        </div>
+        <div class="detail-content-wrap">
+          <div class="hero-badges-row">
+            <span class="badge badge-score" data-f="vod_score">Score: 9.9</span>
+            <span class="badge badge-remarks" data-f="vod_remarks">4K UHD Masterclass</span>
+            <span class="badge badge-accred" data-f="vod_class">CME Category 1 (2.5 Credits)</span>
+          </div>
+
+          <h2 class="detail-title" data-f="vod_name">Robotic-Assisted Laparoscopic Cholecystectomy: Critical View of Safety &amp; Calot's Dissection</h2>
+
+          <div class="detail-meta-table">
+            <div class="detail-meta-row">
+              <span class="meta-label">Discipline:</span>
+              <span class="meta-val" data-f="type_name">Minimally Invasive General Surgery</span>
+            </div>
+            <div class="detail-meta-row">
+              <span class="meta-label">Center:</span>
+              <span class="meta-val" data-f="vod_area">Johns Hopkins Medicine (USA)</span>
+            </div>
+            <div class="detail-meta-row">
+              <span class="meta-label">Year:</span>
+              <span class="meta-val" data-f="vod_year">2026</span>
+            </div>
+            <div class="detail-meta-row">
+              <span class="meta-label">Audio:</span>
+              <span class="meta-val" data-f="vod_lang">English (Clinical Voiceover)</span>
+            </div>
+            <div class="detail-meta-row">
+              <span class="meta-label">Surgeons:</span>
+              <span class="meta-val" data-f="vod_actor">Dr. Katherine Vance, MD, FACS; Dr. Liam Zhang, MD</span>
+            </div>
+            <div class="detail-meta-row">
+              <span class="meta-label">Director:</span>
+              <span class="meta-val" data-f="vod_director">Prof. Alexander Sterling, MD, FRCSEd</span>
+            </div>
+          </div>
+
+          <p class="hero-synopsis" data-f="vod_blurb">
+            Detailed surgical masterclass highlighting Critical View of Safety (CVS) dissection, indocyanine green cholangiography under robotic magnification, and safe specimen extraction protocols in challenging gall bladder pathologies.
+          </p>
+        </div>
+      </section>
+
+      <!-- Recommended Related Cases Grid (data-list="vod") -->
+      <section class="section-header">
+        <h2 class="section-title">
+          <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Recommended Minimally Invasive Masterclasses
+        </h2>
+        <a href="list.html?type=surgical" class="section-link">
+          Browse All <span>&rarr;</span>
+        </a>
+      </section>
+
+      <div class="vod-grid" data-list="vod">
+        <!-- Template Card (data-f applied) -->
+        <div class="vod-card">
+          <div class="vod-cover-wrap">
+            <img data-f="vod_pic" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='pg1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%230f766e'/><stop offset='100%25' stop-color='%23042f2e'/></linearGradient></defs><rect width='200' height='300' fill='url(%23pg1)'/><circle cx='100' cy='110' r='35' fill='none' stroke='%232dd4bf' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='12' font-weight='bold' fill='%23ffffff' text-anchor='middle'>DONOR SURGERY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%2399f6e4' text-anchor='middle'>Laparoscopic Nephrectomy</text></svg>" alt="Donor Nephrectomy Poster">
+            <span class="badge badge-score vod-badge-top-left" data-f="vod_score">9.4</span>
+            <span class="vod-badge-bottom-right" data-f="vod_time">2026-06</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title" data-f="vod_name">Laparoscopic Living Donor Nephrectomy: Transperitoneal</a>
+            <div class="vod-sub-meta">
+              <span data-f="type_name">Urology / Transplant</span>
+              <span data-f="vod_remarks">4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line" data-f="vod_actor">Dr. Ronald Campbell, MD</div>
+          </div>
+        </div>
+
+        <!-- Plain Sample Cards -->
+        <div class="vod-card">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='pg2' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%234338ca'/><stop offset='100%25' stop-color='%231e1b4b'/></linearGradient></defs><rect width='200' height='300' fill='url(%23pg2)'/><path d='M70 120 L100 80 L130 120 Z' fill='none' stroke='%23818cf8' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='12' font-weight='bold' fill='%23ffffff' text-anchor='middle'>BARIATRIC</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23c7d2fe' text-anchor='middle'>Roux-en-Y Bypass</text></svg>" alt="Roux-en-Y Bypass Poster">
+            <span class="badge badge-score vod-badge-top-left">9.5</span>
+            <span class="vod-badge-bottom-right">2026-07</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Robotic Roux-en-Y Gastric Bypass: Stapling &amp; Leak Testing</a>
+            <div class="vod-sub-meta">
+              <span>Bariatric</span>
+              <span>4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Kelvin Higa, MD</div>
+          </div>
+        </div>
+
+        <div class="vod-card">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='pg3' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23b45309'/><stop offset='100%25' stop-color='%23451a03'/></linearGradient></defs><rect width='200' height='300' fill='url(%23pg3)'/><path d='M70 140 C70 80, 130 80, 130 140' stroke='%23fde68a' stroke-width='3' fill='none'/><text x='100' y='220' font-family='sans-serif' font-size='12' font-weight='bold' fill='%23ffffff' text-anchor='middle'>ONCOLOGY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23fef3c7' text-anchor='middle'>Whipple Procedure</text></svg>" alt="Whipple Procedure Poster">
+            <span class="badge badge-score vod-badge-top-left">9.9</span>
+            <span class="vod-badge-bottom-right">2026-05</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Whipple Procedure: Pancreaticoduodenectomy En Bloc</a>
+            <div class="vod-sub-meta">
+              <span>Surgical Oncology</span>
+              <span>4K 60fps</span>
+            </div>
+            <div class="vod-surgeon-line">Prof. Markus Büchler</div>
+          </div>
+        </div>
+
+        <div class="vod-card">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='pg4' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23701a75'/><stop offset='100%25' stop-color='%232a082c'/></linearGradient></defs><rect width='200' height='300' fill='url(%23pg4)'/><circle cx='100' cy='110' r='35' fill='none' stroke='%23e879f9' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='12' font-weight='bold' fill='%23ffffff' text-anchor='middle'>ENDOSCOPY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23f5d0fe' text-anchor='middle'>ESD Gastric Lesions</text></svg>" alt="ESD Dissection Poster">
+            <span class="badge badge-score vod-badge-top-left">9.5</span>
+            <span class="vod-badge-bottom-right">2026-07</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Endoscopic Submucosal Dissection (ESD) for Gastric Lesions</a>
+            <div class="vod-sub-meta">
+              <span>GI Endoscopy</span>
+              <span>Full 1080p</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Kenji Takahashi</div>
+          </div>
+        </div>
+
+        <div class="vod-card">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='pg5' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%230f766e'/><stop offset='100%25' stop-color='%23042f2e'/></linearGradient></defs><rect width='200' height='300' fill='url(%23pg5)'/><circle cx='100' cy='110' r='30' fill='none' stroke='%235eead4' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='12' font-weight='bold' fill='%23ffffff' text-anchor='middle'>UROLOGY</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23ccfbf1' text-anchor='middle'>Robotic Prostatectomy</text></svg>" alt="Robotic Prostatectomy Poster">
+            <span class="badge badge-score vod-badge-top-left">9.6</span>
+            <span class="vod-badge-bottom-right">2026-04</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Robotic Radical Prostatectomy with Neurovascular Sparing</a>
+            <div class="vod-sub-meta">
+              <span>Urology</span>
+              <span>4K HDR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Mani Menon, MD</div>
+          </div>
+        </div>
+
+        <div class="vod-card">
+          <div class="vod-cover-wrap">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='300' viewBox='0 0 200 300'><defs><linearGradient id='pg6' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23155e75'/><stop offset='100%25' stop-color='%23083344'/></linearGradient></defs><rect width='200' height='300' fill='url(%23pg6)'/><rect x='70' y='90' width='60' height='40' rx='4' fill='none' stroke='%2322d3ee' stroke-width='2'/><text x='100' y='220' font-family='sans-serif' font-size='12' font-weight='bold' fill='%23ffffff' text-anchor='middle'>TRAUMA</text><text x='100' y='240' font-family='sans-serif' font-size='9' fill='%23a5f3fc' text-anchor='middle'>Damage Control Laparotomy</text></svg>" alt="Damage Control Laparotomy Poster">
+            <span class="badge badge-score vod-badge-top-left">9.6</span>
+            <span class="vod-badge-bottom-right">2026-04</span>
+          </div>
+          <div class="vod-info">
+            <a href="detail.html" class="vod-title">Damage Control Laparotomy &amp; Temporary Abdominal Closure</a>
+            <div class="vod-sub-meta">
+              <span>Trauma</span>
+              <span>Emergency OR</span>
+            </div>
+            <div class="vod-surgeon-line">Dr. Kenneth Mattox, MD</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Tags Module: Container data-list="tag" (At least 15 clickable tags) -->
+      <section class="popular-tags-module">
+        <h3 class="tags-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          Popular Clinical Specialties &amp; Procedural Tags
+        </h3>
+        <div class="tags-container" data-list="tag">
+          <a href="search.html?q=Cardiology" class="tag-item"><span>Cardiology</span> <span class="tag-count">482</span></a>
+          <a href="search.html?q=Neurosurgery" class="tag-item"><span>Neurosurgery</span> <span class="tag-count">394</span></a>
+          <a href="search.html?q=Laparoscopy" class="tag-item"><span>Laparoscopy</span> <span class="tag-count">612</span></a>
+          <a href="search.html?q=Pediatrics" class="tag-item"><span>Pediatric Surgery</span> <span class="tag-count">245</span></a>
+          <a href="search.html?q=Orthopedics" class="tag-item"><span>Orthopedics &amp; Joint Replacement</span> <span class="tag-count">520</span></a>
+          <a href="search.html?q=Oncology" class="tag-item"><span>Surgical Oncology</span> <span class="tag-count">430</span></a>
+          <a href="search.html?q=Cardiothoracic" class="tag-item"><span>Cardiothoracic</span> <span class="tag-count">318</span></a>
+          <a href="search.html?q=Vascular" class="tag-item"><span>Vascular Surgery</span> <span class="tag-count">290</span></a>
+          <a href="search.html?q=Urology" class="tag-item"><span>Urology &amp; Renal</span> <span class="tag-count">340</span></a>
+          <a href="search.html?q=Robotic" class="tag-item"><span>Robotic Surgery (da Vinci)</span> <span class="tag-count">410</span></a>
+          <a href="search.html?q=Trauma" class="tag-item"><span>Trauma &amp; Critical Care</span> <span class="tag-count">198</span></a>
+          <a href="search.html?q=Anesthesiology" class="tag-item"><span>Anesthesiology &amp; Monitoring</span> <span class="tag-count">175</span></a>
+          <a href="search.html?q=Radiology" class="tag-item"><span>Interventional Radiology</span> <span class="tag-count">215</span></a>
+          <a href="search.html?q=Ophthalmology" class="tag-item"><span>Ophthalmology</span> <span class="tag-count">160</span></a>
+          <a href="search.html?q=Plastic" class="tag-item"><span>Plastic &amp; Reconstructive</span> <span class="tag-count">280</span></a>
+          <a href="search.html?q=Bariatric" class="tag-item"><span>Bariatric &amp; Metabolic</span> <span class="tag-count">210</span></a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer - STRICTLY Sitemap, Crawler Map, Copyright ONLY -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="sitemap.xml" class="footer-link">Sitemap</a>
+        <a href="spider.xml" class="footer-link">Crawler Map</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 MedStream Global. All rights reserved. Enterprise Surgical &amp; Medical Masterclass Archive.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

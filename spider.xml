@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spider>
+  <engine name="MedStream Global Clinical Crawler Map" version="3.4">
+    <indexing_rules>
+      <rule allow="true" path="/"/>
+      <rule allow="true" path="/list.html"/>
+      <rule allow="true" path="/detail.html"/>
+      <rule allow="true" path="/play.html"/>
+      <rule allow="true" path="/search.html"/>
+    </indexing_rules>
+    <feeds>
+      <feed type="surgical_procedures" url="/list.html?type=surgical"/>
+      <feed type="clinical_cases" url="/list.html?type=cases"/>
+      <feed type="masterclasses" url="/list.html?type=masterclass"/>
+    </feeds>
+  </engine>
+</spider>
